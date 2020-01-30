@@ -28,13 +28,15 @@ star3.save()
 
 movie1 = Movie.new({
   "title" => "Star Wars",
-  "genre" => "sci-fi"
+  "genre" => "sci-fi",
+  "budget" => 1000
   })
 movie1.save()
 
 movie2 = Movie.new({
   "title" => "Indiana Jones",
-  "genre" => "adventure"
+  "genre" => "adventure",
+  "budget"=> 2000
   })
 movie2.save()
 
