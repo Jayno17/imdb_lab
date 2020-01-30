@@ -22,6 +22,24 @@ attr_reader :id, :movie_id, :star_id, :fee
     @id = casting["id"].to_i()
   end
 
+  def delete()
+    sql = "DELETE FROM castings
+    WHERE
+    id = $1"
+    value = [@id]
+    SqlRunner.run(sql, value)
+  end
+
+  def update()
+    sql = "UPDATE castings
+    SET (movie_id, star_id, fee)=
+    ($1, $2, $3)
+    WHERE
+    id = $4"
+    values =[@movie_id, @star_id, @fee, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def self.delete_all()
     sql = "DELETE FROM castings"
     SqlRunner.run(sql)
