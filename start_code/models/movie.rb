@@ -11,4 +11,27 @@ def initialize(options)
   @genre = options["genre"]
 end
 
+def save()
+  sql = "INSERT INTO movies
+  (title, genre)
+  VALUES
+  ($1, $2)
+  RETURNING id"
+  values = [@title, @genre]
+  movie = SqlRunner.run(sql, values)[0]
+  @id = movie["id"].to_i()
+end
+
+def self.delete_all()
+  sql = "DELETE FROM movies"
+  SqlRunner.run(sql)
+
+end
+
+def self.all()
+  sql = "SELECT * FROM movies"
+  movies = SqlRunner.run(sql)
+  return movies.map { |movie| Movie.new(movie)}
+end
+
 end
